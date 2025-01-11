@@ -9,9 +9,25 @@
     margin: 10px;
 }
 
-.buttons{
+
+.nums{
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+}
+.nums2{
+    display: flex;
+    justify-content: center;
+}
+.nums3{
+    display: flex;
+    justify-content: center;
+}
+.signs{
+    display: flex;
+    justify-content: center;
+}
+.result{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
 }
