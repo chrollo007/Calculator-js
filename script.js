@@ -1,5 +1,6 @@
 const text=document.querySelector("#text")
 const ans=document.querySelector("#ans")
+const clear=document.querySelector(".cancel")
 
 const buttons=document.querySelectorAll(".btn")
 
@@ -63,8 +64,13 @@ function calculate(){
     }
     
  ans.value=res;
- num1=undefined;
- num2=undefined;
- sign=undefined;
- op=false;
 }
+
+clear.addEventListener("click",()=>{
+    text.value="";
+    ans.value="";
+    num1=undefined;
+    num2=undefined;
+    sign=undefined;
+    op=false;
+})
