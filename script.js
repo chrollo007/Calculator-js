@@ -1,36 +1,70 @@
-const text =document.querySelector("#text")
-const text3=document.querySelector("#hold")
-const text2=document.querySelector("#text2")
-const result=document.querySelector("#ans")
-const c=document.querySelectorAll(".btn");
+const text=document.querySelector("#text")
+const ans=document.querySelector("#ans")
 
-let num1=parseInt(text.value)
-let num2=parseInt(text.value)
+const buttons=document.querySelectorAll(".btn")
 
-c.forEach(c=>{
-  c.addEventListener("click",()=>{
-        if(c.textContent==="+"){
-            text3.value="+"
+let sign;
+let res;
+let num1;
+let num2;
+let op=false;
+buttons.forEach(button=>{
+    button.addEventListener("click",()=>{
+        const value=button.textContent;
+        if(value==="="){
+            return;
         }
+        if(value==="+" || value==="-" || value==="*" || value==="/"){
+            if(num1===undefined)return;
+            sign=value;
+            op=true;
+            text.value+=value;
+            return;
+        } 
+        if(!op){
+        num1=num1?num1+value:value;
+        text.value+=value;
+        }
+        else{
+            num2=num2?num2+value:value;
+            text.value+=value;
+        }
+    })   
 })
-c.addEventListener("click",()=>{
-    if(c.textContent==="-"){
-        text3.value="-"
+
+const equal=document.querySelector(".btn-equal");
+    equal.addEventListener("click",()=>{
+
+        if (num2 === undefined) return; 
+        calculate();
+
+        
+    })
+function calculate(){
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+
+    switch(sign){
+        case "+":
+        res=num1+num2;
+        break;
+        case "-":
+        res=num1-num2;
+        break;
+        case "*":
+        res=num1*num2;
+        break;
+        case "/":
+        res=num1/num2;
+        break;
+        default:
+            res="wrong input";
+            break;
     }
-})
-c.addEventListener("click",()=>{
-    if(c.textContent==="*"){
-        text3.value="*"
-    }
-})
-c.addEventListener("click",()=>{
-    if(c.textContent==="/"){
-        text3.value="/"
-    }
-})
-c.addEventListener("click",()=>{
-    if(c.textContent==="="){
-        result.value=num1+c.textContent+num2;
-    }
-})
-})
+    
+ ans.value=res;
+ num1=undefined;
+ num2=undefined;
+ sign=undefined;
+ op=false;
+}
